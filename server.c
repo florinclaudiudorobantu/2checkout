@@ -111,7 +111,7 @@ static char* get_time()
 
 	t = time(NULL);
 	tm = *localtime(&t);
-	time_buffer = calloc(1, 20 * sizeof(char));
+	time_buffer = calloc(20, BUFSIZ * sizeof(char));
 	DIE(time_buffer == NULL, "calloc");
 
 	// Time format
