@@ -1,0 +1,13 @@
+/* Dorobantu Florin-Claudiu */
+
+#ifndef SERVER_H_
+#define SERVER_H_
+
+#define SERVER_LISTEN_PORT 8888
+#define SERVER_DOCUMENT_ROOT "./"
+#define SERVER_REL_FOLDER "sql/"
+#define SERVER_REL_DATABASE "sql/product_catalog.db"
+#define SERVER_ABS_FOLDER (SERVER_DOCUMENT_ROOT SERVER_REL_FOLDER)
+#define SERVER_ABS_DATABASE (SERVER_DOCUMENT_ROOT SERVER_REL_DATABASE)
+
+#endif /* SERVER_H_ */

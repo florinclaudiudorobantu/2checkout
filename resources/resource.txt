@@ -1,0 +1,72 @@
+-- In my application, I left the database created and populated with the entries below for testing help. But the database can be deleted at any time, because when the server starts, a new one will be created if it does not already exist.
+
+echo -ne "POST /sql/product_catalog.db HTTP/1.1\r\nHost: localhost:8888\r\nUser-Agent: OpenBSD netcat\r\nAccept: */*\r\nAuthorization: Basic ZG9ybzpwYXNzX2Rvcm8=\r\nConnection: Keep-Alive\r\n\r\n0,Computer,999.99,IT\r\nend\r\n\r\n" | nc -q 1 localhost 8888 > response.txt
+
+echo -ne "POST /sql/product_catalog.db HTTP/1.1\r\nHost: localhost:8888\r\nUser-Agent: OpenBSD netcat\r\nAccept: */*\r\nAuthorization: Basic ZG9ybzpwYXNzX2Rvcm8=\r\nConnection: Keep-Alive\r\n\r\n1,Laptop,499.99,IT\r\nend\r\n\r\n" | nc -q 1 localhost 8888 > response.txt
+
+echo -ne "POST /sql/product_catalog.db HTTP/1.1\r\nHost: localhost:8888\r\nUser-Agent: OpenBSD netcat\r\nAccept: */*\r\nAuthorization: Basic ZG9ybzpwYXNzX2Rvcm8=\r\nConnection: Keep-Alive\r\n\r\n2,Banana,1.11,Food\r\nend\r\n\r\n" | nc -q 1 localhost 8888 > response.txt
+
+echo -ne "POST /sql/product_catalog.db HTTP/1.1\r\nHost: localhost:8888\r\nUser-Agent: OpenBSD netcat\r\nAccept: */*\r\nAuthorization: Basic ZG9ybzpwYXNzX2Rvcm8=\r\nConnection: Keep-Alive\r\n\r\n3,Orange,2.22,Food\r\nend\r\n\r\n" | nc -q 1 localhost 8888 > response.txt
+
+echo -ne "POST /sql/product_catalog.db HTTP/1.1\r\nHost: localhost:8888\r\nUser-Agent: OpenBSD netcat\r\nAccept: */*\r\nAuthorization: Basic ZG9ybzpwYXNzX2Rvcm8=\r\nConnection: Keep-Alive\r\n\r\n4,C Programming Language,10.00,Book\r\nend\r\n\r\n" | nc -q 1 localhost 8888 > response.txt
+
+echo -ne "POST /sql/product_catalog.db HTTP/1.1\r\nHost: localhost:8888\r\nUser-Agent: OpenBSD netcat\r\nAccept: */*\r\nAuthorization: Basic ZG9ybzpwYXNzX2Rvcm8=\r\nConnection: Keep-Alive\r\n\r\n5,Design Patterns,12.00,Book\r\nend\r\n\r\n" | nc -q 1 localhost 8888 > response.txt
+
+-- Get the previously added products.
+
+echo -ne "GET /sql/product_catalog.db HTTP/1.1\r\nHost: localhost:8888\r\nUser-Agent: OpenBSD netcat\r\nAccept: */*\r\nAuthorization: Basic ZG9ybzpwYXNzX2Rvcm8=\r\nConnection: Keep-Alive\r\n\r\nall\r\nend\r\n\r\n" | nc -q 1 localhost 8888 > response.txt
+
+-- In json format, the previously added products would look like below.
+
+{
+   "product_catalog":[
+   {
+      "Id":"0",
+      "Name":"Computer",
+      "Price":"999.99 $",
+      "Category":"IT",
+      "CreatedDate":"05.06.2020 10:10:10",
+      "UpdatedDate":"07.06.2020 18:56:46"
+   },
+   {
+      "Id":"1",
+      "Name":"Laptop",
+      "Price":"499.99 $",
+      "Category":"IT",
+      "CreatedDate":"05.06.2020 10:10:10",
+      "UpdatedDate":"07.06.2020 18:56:46"
+   },
+   {
+      "Id":"2",
+      "Name":"Banana",
+      "Price":"1.11 $",
+      "Category":"Food",
+      "CreatedDate":"05.06.2020 10:10:10",
+      "UpdatedDate":"07.06.2020 18:56:46"
+   },
+   {
+      "Id":"3",
+      "Name":"Orange",
+      "Price":"2.22 $",
+      "Category":"Food",
+      "CreatedDate":"05.06.2020 10:10:10",
+      "UpdatedDate":"07.06.2020 18:56:46"
+   },
+   {
+      "Id":"4",
+      "Name":"C Programming Language",
+      "Price":"10.00 $",
+      "Category":"Book",
+      "CreatedDate":"05.06.2020 10:10:10",
+      "UpdatedDate":"07.06.2020 18:56:46"
+   },
+   {
+      "Id":"5",
+      "Name":"Design Patterns",
+      "Price":"12.00 $",
+      "Category":"Book",
+      "CreatedDate":"05.06.2020 10:10:10",
+      "UpdatedDate":"07.06.2020 18:56:46"
+   }
+   ]
+}
